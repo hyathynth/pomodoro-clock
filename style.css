@@ -1,0 +1,79 @@
+* {
+    background-color: #be9b7b;
+}
+
+h1 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 50px;
+    color: #4b3832;
+    text-align: center;
+}
+
+.main {
+    background-color: #3c2f2f;
+    margin: auto;
+    width: 50%;
+    font-size: 25px;
+    font-family: Impact, Charcoal, sans-serif;
+    color: #fff4e6;
+    text-align: center;
+}
+
+#control_part {
+    height: 120px;
+    margin-bottom: 20px;
+    
+}
+
+.control_name {
+    background: none;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    margin-top: 20px;
+}
+
+.control {
+    background: none;
+    display: block;
+    width: 16.6%;
+    float: left;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#time_part {
+    height: 250px;
+}
+
+.button {
+    background: none;
+    display: block;
+    width: 50%;
+    float: left;
+    font-size: 45px;
+}
+
+#clock_name {
+    background: none;
+    width: 100%;
+    float: left;
+    font-size: 30px;
+}
+
+#clock {
+    background: none;
+    width: 100%;
+    height: 80px;
+    float: left;
+    
+}
+
+#break {
+    
+}
+
+
+
+
+
