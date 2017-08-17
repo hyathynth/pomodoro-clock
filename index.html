@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet", type = "text/css", href = "style.css">
-	<title>Pomodoro Clock</title>
+    <head>
+        <link rel="stylesheet", type = "text/css", href = "style.css">
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Berkshire+Swash|Pacifico" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
+        <script type = "text/javascript", src = "Pomodoro.js"></script>
+        <title>Pomodoro Clock</title>
+    </head>
+    
+    
     <body>
         <h1>Pomodoro Clock</h1>
         <div id= "control_part", class = "main">
             <div class = "control_name">Session</div>
             <div class = "control_name">Break</div>
-            <div class = "control">&#x25BC;</div>
-            <div class = "control", id = "session"></div>
-            <div class = "control">&#x25B2;</div>
-            <div class = "control">&#x25BC;</div>
-            <div class = "control", id = "break"></div>
-            <div class = "control">&#x25B2;</div>
+            <div class = "control"><button id = "s_minus">&#x25BC;</button></div>
+            <div class = "control", id = "session">1</div>
+            <div class = "control"><button id = "s_add">&#x25B2;</button></div>
+            <div class = "control"><button id = "b_minus">&#x25BC;</button></div>
+            <div class = "control", id = "break">5</div>
+            <div class = "control"><button id = "b_add">&#x25B2;</button></div>
         </div>
         
         <div id= "time_part", class = "main">
-            <div class = "button">&#x25BA;</div>
-            <div class = "button">&#10227;</div>
+            <div class = "action"><button id = "play">&#9654;</button></div>
+            <div class = "action"><button id = "reset">&#10227;</button></div>
             <div id = "clock_name">Session</div>
             <div id = "clock"></div>
-            <div class = "button">&#8214;</div>
-            <div class = "button">&#x25FC;</div>
-        
+            <div class = "action"><button id = "pause">&#10073;&#10073;</button></div>
+            <div class = "action"><button id = "stop">&#9724;</button></div>
         </div>
     </body>
 

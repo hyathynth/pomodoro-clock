@@ -3,75 +3,93 @@
 }
 
 h1 {
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: 'Pacifico', cursive;
     font-size: 50px;
     color: #4b3832;
     text-align: center;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+div, span {
+    background: none;
 }
 
 .main {
     background-color: #3c2f2f;
     margin: auto;
-    width: 50%;
+    width: 500px;
     font-size: 25px;
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: 'Berkshire Swash', cursive;
     color: #fff4e6;
     text-align: center;
 }
 
 #control_part {
-    height: 120px;
-    margin-bottom: 20px;
-    
+    height: 110px;
+    margin-bottom: 20px;   
 }
 
 .control_name {
-    background: none;
     display: inline-block;
     width: 50%;
     float: left;
     margin-top: 20px;
 }
 
+
 .control {
-    background: none;
     display: block;
     width: 16.6%;
     float: left;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 20px;
+    vertical-align: middle
+}
+
+button {
+    background: none;
+    border: none;
+    font-size: inherit;
+    color: #fff4e6;
+    vertical-align: middle
+}
+
+#session, #break  {
+    font-size: 25px;
+    font-family: 'Abril Fatface', cursive;
 }
 
 #time_part {
     height: 250px;
 }
 
-.button {
-    background: none;
+.action {
     display: block;
     width: 50%;
     float: left;
     font-size: 45px;
+    margin: auto;
+    padding: 0;
+    vertical-align: middle
 }
 
 #clock_name {
-    background: none;
     width: 100%;
     float: left;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #clock {
-    background: none;
     width: 100%;
-    height: 80px;
+    height: 60px;
     float: left;
+    font-size: 45px;
+    font-family: 'Abril Fatface', cursive;
+    margin-top: 0px;
     
 }
 
-#break {
-    
-}
 
 
 
