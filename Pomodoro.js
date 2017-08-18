@@ -12,7 +12,7 @@ function addTime (ele) {
 
 function formatTime (hr, min, sec) {
     if (hr < 10) {
-        hr = ('0' + hr).slice(-2);
+        has_hr = ('0' + hr).slice(-2);
     }
     if (min < 10) {
         min = ('0' + min).slice(-2);
@@ -20,11 +20,14 @@ function formatTime (hr, min, sec) {
     if (sec < 10) {
         sec = ('0' + sec).slice(-2);
     }
-    return hr + ':' + min + ':' + sec;
+    if (hr == 0) {
+        return min + ':' + sec;
+    }
+    else return has_hr + ':' + min + ':' + sec;
 }
 
 function displayTime (session, ele){
-    var temp_time = parseInt(session.text()) * 60;
+    var temp_time = session * 60;
     var temp_hr = Math.floor(temp_time / 3600);
     var temp_min = Math.floor((temp_time / 60 - temp_hr * 60));
     var temp_sec = Math.floor(temp_time - temp_hr*3600 - temp_min*60);
@@ -34,9 +37,16 @@ function displayTime (session, ele){
 
 function updateTime (ele) {
     var str_time = $('#clock').text().split(':');
-    temp_hr = str_time[0];
-    temp_min = str_time[1];
-    temp_sec = str_time[2];
+    if (str_time.length == 2) {
+        temp_hr = 0;
+        temp_min = str_time[0];
+        temp_sec = str_time[1];
+    }
+    else {
+        temp_hr = str_time[0];
+        temp_min = str_time[1];
+        temp_sec = str_time[2];
+    }
     
     if (temp_sec > 0) {
         temp_sec--;
@@ -73,18 +83,18 @@ var default_session = 25;
 $(document).ready(function () {
     
     
-    displayTime($('#session'), $('#clock'));
+    displayTime($('#session').text(), $('#clock'));
     
     
     $('#s_minus').on('click', function(){
         subsTime($('#session'));
-        displayTime($('#session'), $('#clock'));
+        displayTime($('#session').text(), $('#clock'));
     })
       
     
     $('#s_add').on('click', function(){
         addTime($('#session')); 
-        displayTime($('#session'), $('#clock'));
+        displayTime($('#session').text(), $('#clock'));
     })
     
     
@@ -98,15 +108,25 @@ $(document).ready(function () {
         
     })
     
+   
     $('#play').on('click', function() {
-        var sec_count = parseInt($('#session').text()) * 60;
+        var session_count = $('#session').text() * 60;
+        var break_count = $('#break').text() * 60;
+        var temp_count = session_count;
+        
         interval = setInterval(function () {
             updateTime($('#clock'));
-            sec_count--;
-            if (sec_count == 0) {
-                displayTime ($('#break'), $('#clock'));
+            temp_count--;
+            console.log(temp_count);
+            console.log(break_count + "break");
+            console.log(session_count + "session");
+            if (temp_count < 0) {
+                displayTime(break_count/60, $('#clock')); 
+                temp_count = break_count;
+                break_count = session_count;
+                session_count = temp_count;    
             }
-        },1000)
+        },1000);
         
     })
 
@@ -116,13 +136,13 @@ $(document).ready(function () {
     
     $('#stop').on('click', function(){
         clearInterval(interval); 
-        displayTime($('#session'), $('#clock'));
+        displayTime($('#session').text(), $('#clock'));
     })
     
     $('#reset').on('click', function(){
         clearInterval(interval); 
         $('#session').text(default_session);
-        displayTime($('#session'), $('#clock'));
+        displayTime($('#session').text(), $('#clock'));
     })
     
     
