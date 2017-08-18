@@ -78,42 +78,47 @@ function checkTime (ele) {
     
 var interval = null;
 var default_session = 25;
+var default_break = 5;
 
 
 $(document).ready(function () {
-    
+    var session_count = $('#session').text() * 60;
+    var break_count = $('#break').text() * 60;
+    var temp_count = session_count;
     
     displayTime($('#session').text(), $('#clock'));
     
     
     $('#s_minus').on('click', function(){
         subsTime($('#session'));
+        session_count = $('#session').text() * 60;
+        temp_count = session_count;
         displayTime($('#session').text(), $('#clock'));
     })
       
     
     $('#s_add').on('click', function(){
         addTime($('#session')); 
+        session_count = $('#session').text() * 60;
+        temp_count = session_count;
         displayTime($('#session').text(), $('#clock'));
     })
     
     
      $('#b_minus').on('click', function(){
         subsTime($('#break'));
+        break_count = $('#break').text() * 60;
         
     })
     
      $('#b_add').on('click', function(){
         addTime($('#break'));
+        break_count = $('#break').text() * 60;
         
     })
     
    
     $('#play').on('click', function() {
-        var session_count = $('#session').text() * 60;
-        var break_count = $('#break').text() * 60;
-        var temp_count = session_count;
-        
         interval = setInterval(function () {
             updateTime($('#clock'));
             temp_count--;
@@ -136,12 +141,17 @@ $(document).ready(function () {
     
     $('#stop').on('click', function(){
         clearInterval(interval); 
+        temp_count = session_count;
         displayTime($('#session').text(), $('#clock'));
     })
     
     $('#reset').on('click', function(){
-        clearInterval(interval); 
+        clearInterval(interval);
         $('#session').text(default_session);
+        $('#break').text(default_break);
+        session_count = $('#session').text() * 60;
+        break_count = $('#break').text() * 60;
+        temp_count = session_count;
         displayTime($('#session').text(), $('#clock'));
     })
     
