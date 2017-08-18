@@ -28,6 +28,7 @@ function displayTime (session, ele){
     var temp_hr = Math.floor(temp_time / 3600);
     var temp_min = Math.floor((temp_time / 60 - temp_hr * 60));
     var temp_sec = Math.floor(temp_time - temp_hr*3600 - temp_min*60);
+    ele.css('color', '#fff4e6');
     ele.text(formatTime(temp_hr, temp_min, temp_sec));
 }
 
@@ -36,6 +37,7 @@ function updateTime (ele) {
     temp_hr = str_time[0];
     temp_min = str_time[1];
     temp_sec = str_time[2];
+    
     if (temp_sec > 0) {
         temp_sec--;
     }
@@ -47,11 +49,25 @@ function updateTime (ele) {
         temp_min = 59;
         temp_hr--;
     }
+    
+    if (temp_hr == 0 && temp_min > 0 && temp_min <= 2 && temp_sec <= 59) {
+        ele.css('color', '#FFDC00');
+    }
+    else if (temp_hr == 0 && temp_min == 0 && temp_sec <= 59) {
+        ele.css('color', '#FF4136');
+    }
+    else ele.css('color', '#2ECC40');
+        
     ele.text(formatTime(temp_hr, temp_min, temp_sec));
+}
+
+function checkTime (ele) {
+    
 }
 
     
 var interval = null;
+var default_session = 25;
 
 
 $(document).ready(function () {
@@ -83,9 +99,14 @@ $(document).ready(function () {
     })
     
     $('#play').on('click', function() {
+        var sec_count = parseInt($('#session').text()) * 60;
         interval = setInterval(function () {
             updateTime($('#clock'));
-        }, 1000);
+            sec_count--;
+            if (sec_count == 55) {
+                clearInterval(interval); 
+            }
+        },1000)
         
     })
 
@@ -95,6 +116,12 @@ $(document).ready(function () {
     
     $('#stop').on('click', function(){
         clearInterval(interval); 
+        displayTime($('#session'), $('#clock'));
+    })
+    
+    $('#reset').on('click', function(){
+        clearInterval(interval); 
+        $('#session').text(default_session);
         displayTime($('#session'), $('#clock'));
     })
     
