@@ -26,13 +26,24 @@ function formatTime (hr, min, sec) {
     else return has_hr + ':' + min + ':' + sec;
 }
 
-function displayTime (session, ele){
+function displayTime (session, ele, optional){
     var temp_time = session * 60;
     var temp_hr = Math.floor(temp_time / 3600);
     var temp_min = Math.floor((temp_time / 60 - temp_hr * 60));
     var temp_sec = Math.floor(temp_time - temp_hr*3600 - temp_min*60);
     ele.removeClass();
-    ele.text(formatTime(temp_hr, temp_min, temp_sec));
+   
+    if (optional === undefined) {}
+    if (optional == 1) {
+        if (temp_hr == 0 && temp_min > 0 && temp_min <= 2 && temp_sec <= 59) {
+        ele.addClass("yello");
+    }
+        else if (temp_hr == 0 && temp_min == 0 && temp_sec <= 59) {
+        ele.addClass("red");
+    }
+        else ele.addClass("green"); 
+    }
+     ele.text(formatTime(temp_hr, temp_min, temp_sec));
 }
 
 function updateTime (ele) {
@@ -126,7 +137,7 @@ $(document).ready(function () {
             console.log(break_count + "break");
             console.log(session_count + "session");
             if (temp_count < 0) {
-                displayTime(break_count/60, $('#clock')); 
+                displayTime(break_count/60, $('#clock'), 1); 
                 temp_count = break_count;
                 break_count = session_count;
                 session_count = temp_count;    
