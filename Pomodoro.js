@@ -141,10 +141,10 @@ $(document).ready(function () {
         interval = setInterval(function () {
             updateTime($('#clock'));
             temp_count--;
-            
-            console.log(temp_count);
-            console.log("s" + session_count);
-            console.log("b" + break_count);
+//            for testing purposes:
+//            console.log(temp_count);
+//            console.log("s" + session_count);
+//            console.log("b" + break_count);
             
             
             if (temp_count < 0) {
@@ -159,7 +159,7 @@ $(document).ready(function () {
                 else $('#clock_name').text("Session");
                 name_count++;
             }
-        },100);
+        },1000);
     })
 
     $('#pause').on('click', function(){
@@ -170,6 +170,7 @@ $(document).ready(function () {
     })
     
     $('#stop').on('click', function(){
+        name_count = 0;
         $('#play').prop("disabled", false);
         $("#play").removeClass("enter");
         $("#pause").removeClass("enter");
@@ -186,6 +187,7 @@ $(document).ready(function () {
     })
     
     $('#reset').on('click', function(){
+        name_count = 0;
         $('#play').prop("disabled", false);
         $("#play").removeClass("enter");
         $("#pause").removeClass("enter");
