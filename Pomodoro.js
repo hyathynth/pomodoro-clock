@@ -131,6 +131,12 @@ $(document).ready(function () {
     
    
     $('#play').on('click', function() {
+        $(this).prop("disabled", true);
+        $("#pause").prop("disabled", false);
+        $("#s_minus").prop("disabled", true);
+        $("#s_add").prop("disabled", true);
+        $("#b_minus").prop("disabled", true);
+        $("#b_add").prop("disabled", true);
         interval = setInterval(function () {
             updateTime($('#clock'));
             temp_count--;
@@ -151,10 +157,17 @@ $(document).ready(function () {
     })
 
     $('#pause').on('click', function(){
+        $(this).prop("disabled", true);
+        $('#play').prop("disabled", false);
         clearInterval(interval); 
     })
     
     $('#stop').on('click', function(){
+        $('#play').prop("disabled", false);
+        $("#s_minus").prop("disabled", false);
+        $("#s_add").prop("disabled", false);
+        $("#b_minus").prop("disabled", false);
+        $("#b_add").prop("disabled", false);
         clearInterval(interval); 
         temp_count = session_count;
         $('#clock_name').text("Session");
@@ -162,6 +175,11 @@ $(document).ready(function () {
     })
     
     $('#reset').on('click', function(){
+        $('#play').prop("disabled", false);
+        $("#s_minus").prop("disabled", false);
+        $("#s_add").prop("disabled", false);
+        $("#b_minus").prop("disabled", false);
+        $("#b_add").prop("disabled", false);
         clearInterval(interval);
         $('#session').text(default_session);
         $('#break').text(default_break);
