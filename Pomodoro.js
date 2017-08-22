@@ -96,6 +96,7 @@ $(document).ready(function () {
     var session_count = $('#session').text() * 60;
     var break_count = $('#break').text() * 60;
     var temp_count = session_count;
+    var name_count = 0;
     
     displayTime($('#session').text(), $('#clock'));
     
@@ -133,17 +134,20 @@ $(document).ready(function () {
         interval = setInterval(function () {
             updateTime($('#clock'));
             temp_count--;
-            console.log(temp_count);
-            console.log(break_count + "break");
-            console.log(session_count + "session");
+            
             if (temp_count < 0) {
                 displayTime(break_count/60, $('#clock'), 1); 
                 temp_count = break_count;
                 break_count = session_count;
-                session_count = temp_count;    
+                session_count = temp_count; 
+                
+                if (name_count%2 == 0) {
+                    $('#clock_name').text("Break");
+                }
+                else $('#clock_name').text("Session");
+                name_count++;
             }
         },1000);
-        
     })
 
     $('#pause').on('click', function(){
@@ -153,6 +157,7 @@ $(document).ready(function () {
     $('#stop').on('click', function(){
         clearInterval(interval); 
         temp_count = session_count;
+        $('#clock_name').text("Session");
         displayTime($('#session').text(), $('#clock'));
     })
     
@@ -163,6 +168,7 @@ $(document).ready(function () {
         session_count = $('#session').text() * 60;
         break_count = $('#break').text() * 60;
         temp_count = session_count;
+        $('#clock_name').text("Session");
         displayTime($('#session').text(), $('#clock'));
     })
     
