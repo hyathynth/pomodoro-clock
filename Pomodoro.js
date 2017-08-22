@@ -132,6 +132,7 @@ $(document).ready(function () {
    
     $('#play').on('click', function() {
         $(this).prop("disabled", true);
+        $("#pause").removeClass("enter");
         $("#pause").prop("disabled", false);
         $("#s_minus").prop("disabled", true);
         $("#s_add").prop("disabled", true);
@@ -140,6 +141,11 @@ $(document).ready(function () {
         interval = setInterval(function () {
             updateTime($('#clock'));
             temp_count--;
+            
+            console.log(temp_count);
+            console.log("s" + session_count);
+            console.log("b" + break_count);
+            
             
             if (temp_count < 0) {
                 displayTime(break_count/60, $('#clock'), 1); 
@@ -153,22 +159,27 @@ $(document).ready(function () {
                 else $('#clock_name').text("Session");
                 name_count++;
             }
-        },1000);
+        },100);
     })
 
     $('#pause').on('click', function(){
         $(this).prop("disabled", true);
+        $("#play").removeClass("enter");
         $('#play').prop("disabled", false);
         clearInterval(interval); 
     })
     
     $('#stop').on('click', function(){
         $('#play').prop("disabled", false);
+        $("#play").removeClass("enter");
+        $("#pause").removeClass("enter");
         $("#s_minus").prop("disabled", false);
         $("#s_add").prop("disabled", false);
         $("#b_minus").prop("disabled", false);
         $("#b_add").prop("disabled", false);
         clearInterval(interval); 
+        session_count = $('#session').text() * 60;
+        break_count = $('#break').text() * 60;
         temp_count = session_count;
         $('#clock_name').text("Session");
         displayTime($('#session').text(), $('#clock'));
@@ -176,6 +187,8 @@ $(document).ready(function () {
     
     $('#reset').on('click', function(){
         $('#play').prop("disabled", false);
+        $("#play").removeClass("enter");
+        $("#pause").removeClass("enter");
         $("#s_minus").prop("disabled", false);
         $("#s_add").prop("disabled", false);
         $("#b_minus").prop("disabled", false);
@@ -188,6 +201,70 @@ $(document).ready(function () {
         temp_count = session_count;
         $('#clock_name').text("Session");
         displayTime($('#session').text(), $('#clock'));
+    })
+    
+    $('#s_add').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#s_add').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#b_add').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#b_add').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#s_minus').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#s_minus').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#b_minus').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#b_minus').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#play').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#play').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#pause').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#pause').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#reset').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#reset').on('mouseleave', function(){
+        $(this).removeClass("enter");
+    })
+    
+    $('#stop').on('mouseenter', function(){
+        $(this).addClass("enter");
+    })
+    
+    $('#stop').on('mouseleave', function(){
+        $(this).removeClass("enter");
     })
     
     
