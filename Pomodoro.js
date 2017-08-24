@@ -82,11 +82,7 @@ function updateTime (ele) {
     ele.text(formatTime(temp_hr, temp_min, temp_sec));
 }
 
-function checkTime (ele) {
-    
-}
 
-    
 var interval = null;
 var default_session = 25;
 var default_break = 5;
@@ -145,7 +141,6 @@ $(document).ready(function () {
 //            console.log(temp_count);
 //            console.log("s" + session_count);
 //            console.log("b" + break_count);
-            
             
             if (temp_count < 0) {
                 displayTime(break_count/60, $('#clock'), 1); 
